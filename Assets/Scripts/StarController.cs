@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class StarController : MonoBehaviour
 {
-
     // ‰ñ“]‘¬“x
-    private float rotSpeed = 0.5f;
+    private float rotSpeed = 300f;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +18,6 @@ public class StarController : MonoBehaviour
     void Update()
     {
         //‰ñ“]
-        this.transform.Rotate(0, this.rotSpeed, 0);
+        this.transform.Rotate(0, this.rotSpeed * Time.deltaTime, 0);
     }
 }

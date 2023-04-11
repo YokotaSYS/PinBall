@@ -18,22 +18,33 @@ public class FripperController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && tag == "LeftFripperTag")
+        if (Input.touchCount > 0)
         {
-            SetAngle(this.flickAngle);
-        }
-        if ((Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A)) && tag == "LeftFripperTag")
-        {
-            SetAngle(this.defaultAngle);
-        }
-
-        if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) && tag == "RightFripperTag")
-        {
-            SetAngle(this.flickAngle);
-        }
-        if ((Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D)) && tag == "RightFripperTag")
-        {
-            SetAngle(this.defaultAngle);
+            foreach (Touch touch in Input.touches)
+            {
+                if (touch.phase == TouchPhase.Began)
+                {
+                    if (touch.position.x < Screen.width / 2 && tag == "LeftFripperTag")
+                    {
+                        SetAngle(this.flickAngle);
+                    }
+                    if (touch.position.x >= Screen.width / 2 && tag == "RightFripperTag")
+                    {
+                        SetAngle(this.flickAngle);
+                    }
+                }
+                if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+                {
+                    if (touch.position.x < Screen.width / 2 && tag == "LeftFripperTag")
+                    {
+                        SetAngle(this.defaultAngle);
+                    }
+                    if (touch.position.x >= Screen.width / 2 && tag == "RightFripperTag")
+                    {
+                        SetAngle(this.defaultAngle);
+                    }
+                }
+            }
         }
     }
 

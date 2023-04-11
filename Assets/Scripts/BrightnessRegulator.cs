@@ -11,7 +11,7 @@ public class BrightnessRegulator : MonoBehaviour
     private float minEmission = 0.2f;
     // Emissionの強度
     private float magEmission = 2.0f;
-    // 角度
+    // 光度
     private int degree = 0;
     //発光速度
     private int speed = 5;
@@ -55,7 +55,7 @@ public class BrightnessRegulator : MonoBehaviour
             // エミッションに色を設定する
             myMaterial.SetColor("_EmissionColor", emissionColor);
 
-            //現在の角度を小さくする
+            //現在の光を小さくする
             this.degree -= this.speed;
         }
     }
@@ -63,7 +63,7 @@ public class BrightnessRegulator : MonoBehaviour
     //衝突時に呼ばれる関数
     void OnCollisionEnter(Collision other)
     {
-        //角度を180に設定
+        //光度を180に設定
         this.degree = 180;
     }
 }
